@@ -2,44 +2,47 @@ package entidade;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Telefone")
 public class Telefone {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "telefone_id")
-	private long id;
+	private Integer id;
 	private String codigoArea;
 	private String numero;
 	private String tipo;
 
-	@ManyToOne
-	@JoinColumn(name = "funcionario_id")
+	 @ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "funcionario_id", referencedColumnName = "funcionario_id")
 	Funcionario funcionario;
 
 	public Telefone() {
 	}
 
-	public Telefone(long id, String codigoArea, String numero, String tipo, Funcionario funcionario) {
+	public Telefone(Integer id, String codigoArea, String numero, String tipo) {
 		super();
 		this.id = id;
 		this.codigoArea = codigoArea;
 		this.numero = numero;
 		this.tipo = tipo;
-		this.funcionario = funcionario;
+		//this.funcionario = funcionario;
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -75,4 +78,10 @@ public class Telefone {
 		this.funcionario = funcionario;
 	}
 
+	@Override
+	public String toString() {
+		return "Telefone [id=" + id + ", codigoArea=" + codigoArea + ", numero=" + numero + ", tipo=" + tipo + "]";
+	}
+
+	
 }

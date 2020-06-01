@@ -6,14 +6,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Endereco")
 public class Endereco {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "endereco_id")
-	private long id;
+	private Integer id;
 	private String rua;
 	private String bairro;
 	private String cidade;
@@ -26,8 +28,8 @@ public class Endereco {
 	public Endereco() {
 	}
 
-	public Endereco(long id, String rua, String bairro, String cidade, String estado, String codigoPostal,
-			Funcionario funcionario) {
+	public Endereco(Integer id, String rua, String bairro, String cidade, String estado, String codigoPostal)
+	{
 		super();
 		this.id = id;
 		this.rua = rua;
@@ -35,14 +37,14 @@ public class Endereco {
 		this.cidade = cidade;
 		this.estado = estado;
 		this.codigoPostal = codigoPostal;
-		this.funcionario = funcionario;
+		//this.funcionario = funcionario;
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -94,4 +96,11 @@ public class Endereco {
 		this.funcionario = funcionario;
 	}
 
+	@Override
+	public String toString() {
+		return "Endereco [id=" + id + ", rua=" + rua + ", bairro=" + bairro + ", cidade=" + cidade + ", estado="
+				+ estado + ", codigoPostal=" + codigoPostal + "]";
+	}
+
+	
 }

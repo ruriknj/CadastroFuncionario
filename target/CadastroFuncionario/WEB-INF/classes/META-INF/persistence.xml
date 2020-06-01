@@ -7,9 +7,9 @@
 	<persistence-unit name="CadastroFuncinario">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		
- 		<class></class>
-		<class></class>
-		<class></class>
+ 		<class>entidade.Funcionario</class>
+		<class>entidade.Endereco</class>
+		<class>entidade.Telefone</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url"
