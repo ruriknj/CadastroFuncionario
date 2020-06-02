@@ -8,10 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "Telefone")
 public class Telefone {
 
 	@Id
@@ -22,7 +20,7 @@ public class Telefone {
 	private String numero;
 	private String tipo;
 
-	 @ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "funcionario_id", referencedColumnName = "funcionario_id")
 	Funcionario funcionario;
 
@@ -80,8 +78,8 @@ public class Telefone {
 
 	@Override
 	public String toString() {
-		return "Telefone [id=" + id + ", codigoArea=" + codigoArea + ", numero=" + numero + ", tipo=" + tipo + "]";
+		return "Telefone: [id=" + id + ", CodigoArea: " + codigoArea + ", Número: " + numero + ", Tipo: " + tipo + "]";
 	}
-
+	
 	
 }

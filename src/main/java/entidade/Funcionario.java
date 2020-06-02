@@ -1,19 +1,20 @@
 package entidade;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "Funcionario")
 public class Funcionario {
 
 	@Id
@@ -24,9 +25,9 @@ public class Funcionario {
 	private String sobrenome;
 
 	@OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL)
-	private List<Telefone> telefones;
+	private List<Telefone> telefones = new ArrayList<>();
 
-	@OneToOne
+	@OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id", referencedColumnName = "endereco_id")
 	private Endereco endereco;
 
@@ -38,7 +39,7 @@ public class Funcionario {
 		this.id = id;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
-		//this.endereco = endereco;
+		// this.endereco = endereco;
 	}
 
 	public Integer getId() {
@@ -83,10 +84,9 @@ public class Funcionario {
 
 	@Override
 	public String toString() {
-		return "Funcionario [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", telefones=" + telefones
-				+ "]";
+		return "Funcionario: [id: " + id + ", nome: " + nome + ", sobrenome: " + sobrenome + ", telefones: " + telefones
+				+ ", endereco: " + endereco + "\n";
 	}
 
 	
 }
-

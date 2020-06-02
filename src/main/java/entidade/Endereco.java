@@ -2,14 +2,13 @@ package entidade;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "Endereco")
 public class Endereco {
 
 	@Id
@@ -22,14 +21,13 @@ public class Endereco {
 	private String estado;
 	private String codigoPostal;
 
-	@OneToOne(mappedBy = "endereco")
-	Funcionario funcionario;
+	 @OneToOne(fetch=FetchType.LAZY, mappedBy="endereco")
+	private Funcionario funcionario;
 
 	public Endereco() {
 	}
 
-	public Endereco(Integer id, String rua, String bairro, String cidade, String estado, String codigoPostal)
-	{
+	public Endereco(Integer id, String rua, String bairro, String cidade, String estado, String codigoPostal) {
 		super();
 		this.id = id;
 		this.rua = rua;
@@ -98,8 +96,8 @@ public class Endereco {
 
 	@Override
 	public String toString() {
-		return "Endereco [id=" + id + ", rua=" + rua + ", bairro=" + bairro + ", cidade=" + cidade + ", estado="
-				+ estado + ", codigoPostal=" + codigoPostal + "]";
+		return "Endereco: [id: " + id + ", Rua: " + rua + ", Bairro:" + bairro + ", Cidade: " + cidade + ", Estado: "
+				+ estado + ", CodigoPostal: " + codigoPostal + "]";
 	}
 
 	
