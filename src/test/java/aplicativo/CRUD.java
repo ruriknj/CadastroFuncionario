@@ -1,6 +1,7 @@
 package aplicativo;
 
 import java.util.Arrays;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -10,18 +11,20 @@ import entidade.Funcionario;
 import entidade.Telefone;
 import util.JpaUtil;
 
+
 public class CRUD {
 
 	public static void main(String[] args) {
 
-		//salvar();
-		pesquisar();
+		salvar();
+		//listarContato();
+		//remover();
 
 	}
 
 	public static void salvar() {
 		// Relação: OnetoOne
-		Funcionario fun1 = new Funcionario(null, "Flavio", "Gomes");
+		Funcionario fun1 = new Funcionario(null, "Flavio", "Gomes", "analista de sistemas");
 		Endereco end1 = new Endereco(null, "Rua B", "Bairro B", "cidade B", "estado B", "1111-11");
 		fun1.setEndereco(end1);
 		// =========================================================================================
@@ -41,15 +44,29 @@ public class CRUD {
 		ent.close();
 	}
 
-	public static void pesquisar() {
+	public static void listarContato() {
 		EntityManager ent = JpaUtil.getEntityManager();
 		// EntityTransaction tm = ent.getTransaction();
 
-		Query query = ent.createQuery("from Funcionario u");
+		Query query = ent.createQuery("from Funcionario f");
 		List<Funcionario> funcionarios = query.getResultList();
 
-		System.out.println("Entrou PEsquisar ====");
+		System.out.println("===== Entrou Consulta: ====");
 		System.out.println(funcionarios);
+
+	}
+	
+	public static void remover() {
+		EntityManager ent = JpaUtil.getEntityManager();
+		EntityTransaction tm = ent.getTransaction();
+
+		Funcionario funcionario = ent.find(Funcionario.class, 6);
+
+		System.out.println("Remover Feira Mensal : " + funcionario);
+
+		tm.begin();
+		ent.remove(funcionario);
+		tm.commit();
 
 	}
 }

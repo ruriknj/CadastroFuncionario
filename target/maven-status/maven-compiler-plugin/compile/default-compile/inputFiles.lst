@@ -1,4 +1,7 @@
 D:\ws_eclipse\ws_eclipse1\CadastroFuncionario\src\main\java\util\JpaUtil.java
+D:\ws_eclipse\ws_eclipse1\CadastroFuncionario\src\main\java\dao\FuncionarioDAOImp.java
+D:\ws_eclipse\ws_eclipse1\CadastroFuncionario\src\main\java\dao\FuncionarioDAO.java
 D:\ws_eclipse\ws_eclipse1\CadastroFuncionario\src\main\java\entidade\Endereco.java
 D:\ws_eclipse\ws_eclipse1\CadastroFuncionario\src\main\java\entidade\Funcionario.java
 D:\ws_eclipse\ws_eclipse1\CadastroFuncionario\src\main\java\entidade\Telefone.java
+D:\ws_eclipse\ws_eclipse1\CadastroFuncionario\src\main\java\controle\FuncionarioBean.java

@@ -1,8 +1,6 @@
 package entidade;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,23 +21,24 @@ public class Funcionario {
 	private Integer id;
 	private String nome;
 	private String sobrenome;
+	private String cargo;
 
 	@OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL)
-	private List<Telefone> telefones = new ArrayList<>();
+	private List<Telefone> telefones;
 
-	@OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id", referencedColumnName = "endereco_id")
 	private Endereco endereco;
 
 	public Funcionario() {
 	}
 
-	public Funcionario(Integer id, String nome, String sobrenome) {
+	public Funcionario(Integer id, String nome, String sobrenome, String cargo) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
-		// this.endereco = endereco;
+		this.cargo = cargo;		
 	}
 
 	public Integer getId() {
@@ -80,13 +79,21 @@ public class Funcionario {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 
 	@Override
 	public String toString() {
-		return "Funcionario: [id: " + id + ", nome: " + nome + ", sobrenome: " + sobrenome + ", telefones: " + telefones
+		return "Funcionario: [id: " + id + ", nome: " + nome + ", sobrenome: " + sobrenome + ", Cargo: " + cargo + ", telefones: " + telefones
 				+ ", endereco: " + endereco + "\n";
 	}
 
-	
 }

@@ -2,7 +2,6 @@ package entidade;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,7 +32,7 @@ public class Telefone {
 		this.codigoArea = codigoArea;
 		this.numero = numero;
 		this.tipo = tipo;
-		//this.funcionario = funcionario;
+
 	}
 
 	public Integer getId() {
@@ -80,6 +79,5 @@ public class Telefone {
 	public String toString() {
 		return "Telefone: [id=" + id + ", CodigoArea: " + codigoArea + ", Número: " + numero + ", Tipo: " + tipo + "]";
 	}
-	
-	
+
 }

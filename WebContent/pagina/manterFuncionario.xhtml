@@ -1,0 +1,123 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<h:body>
+	<p:fieldset>
+		<h:form id="form">
+			<ui:composition template="templateFuncionario.xhtml">
+				
+				<p:messages id="message" showDetail="true" closable="true">
+					<p:panel header="Funcionario" style="width:605px;"/>
+				</p:messages>
+				<p:panelGrid columns="1">
+				<p:column>
+					<h:outputLabel value="Nome:" />
+					<p:inputText label="Nome"
+						value="#{FuncionarioBean.funcionario.nome}" 
+						style="width:333px;" size="50" />
+					</p:column>
+					<p:column>
+						<h:outputLabel value="Sobrenome:" />
+						<p:inputText label="Sobrenome"
+							value="#{FuncionarioBean.funcionario.sobrenome}"
+							style="width:289px;" size="50" />
+					</p:column>
+
+				</p:panelGrid>
+				<p:panelGrid columns="1">
+					<h:outputLabel value="Cargo/Experiência:" />
+					<p:inputTextarea label="Cargo"
+						value="#{FuncionarioBean.funcionario.cargo}"
+						style="width:582px;height:50px; h" />
+				</p:panelGrid >
+				<p:column />
+				
+	
+				<p:panel header="Endereço" style="width:605px;"/>
+				<p:column colspan="4" />
+				<p:panelGrid columns="6">
+					<h:outputLabel value="Rua:" />
+					<p:inputText size="30" style="width:240px;"
+						value="#{FuncionarioBean.endereco.rua}" />
+					<h:outputLabel value="Bairro: " />
+					<p:inputText style="width:180px;"
+						value="#{FuncionarioBean.endereco.bairro}" />
+					</p:panelGrid >
+					<p:column colspan="6" />
+					<p:panelGrid columns="6">
+					<h:outputLabel value="Cidade:" />
+					<p:inputText size="20" style="width:162px;" 
+						value="#{FuncionarioBean.endereco.cidade}" />
+					<h:outputLabel value="Estado:" />
+					<p:selectOneMenu style="width:35px"
+						value="#{FuncionarioBean.endereco.estado}">
+						<f:selectItem itemLabel="PE" itemValue="PE" />
+						<f:selectItem itemLabel="CE" itemValue="CE" />
+					</p:selectOneMenu>
+					<h:outputLabel value="CEP: " />
+					<p:inputText size="30" style="width:85px;"
+						value="#{FuncionarioBean.endereco.codigoPostal}" />
+				</p:panelGrid >
+				<p:column colspan="6" />
+				<p:panel header="Telefones" style="width:605px;"/>
+				<p:panelGrid columns="6">
+					<h:outputLabel value="Código de Área:" />
+					<p:inputText size="3" style="width:35px;"
+						value="#{FuncionarioBean.telefoneNovo.codigoArea}" />
+					<h:outputLabel value="Numero: " />
+					<p:inputText size="10" style="width:95px;"
+						value="#{FuncionarioBean.telefoneNovo.numero}" />
+					<h:outputLabel value="Tipo: " />
+					<p:selectOneMenu style="width:80px"
+						value="#{FuncionarioBean.telefoneNovo.tipo}">
+						<f:selectItem itemLabel="Celular" itemValue="CELULAR" />
+						<f:selectItem itemLabel="Fixo" itemValue="FIXO" />
+					</p:selectOneMenu>
+					</p:panelGrid>
+					<p:column>
+					</p:column>
+						<br />
+					<p:panelGrid >
+					<p:commandButton value="Adicionar" update="itens" 
+						actionListener="#{FuncionarioBean.adicionarTelefone}" />
+					<p:commandButton value="Limpar" action="#{FuncionarioBean.limpar}"
+					id="limpar" update="@form" process="@this"/>
+					<p:commandButton value="Salvar" 
+						actionListener="#{FuncionarioBean.salvar}" />
+					</p:panelGrid>
+					<br />
+				<p:dataTable id="itens" value="#{FuncionarioBean.funcionario.telefones}"
+					style="width:605px;" var="item">
+					<p:column>
+						<p:button value="Deletar" action="#{FuncionarioBean.limpar}"
+							update="@form">
+						</p:button>
+					</p:column>
+					<p:column headerText="CodigoArea">
+						<h:outputText value="#{item.codigoArea}" />
+					</p:column>
+					<p:column headerText="Numero">
+						<h:outputText value="#{item.numero}" />
+					</p:column>
+					<p:column headerText="Tipo">
+						<h:outputText value="#{item.tipo}" />
+					</p:column>
+					</p:dataTable>
+				
+				
+				
+				
+
+
+			</ui:composition>
+		</h:form>
+	</p:fieldset>
+</h:body>
+
+
+
+</html>
