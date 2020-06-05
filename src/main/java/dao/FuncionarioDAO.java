@@ -13,9 +13,9 @@ public interface FuncionarioDAO {
 
 	public void alterar(Funcionario funcionario);
 
-	public void remover(Funcionario funcionario);
+	public Funcionario removerFuncionario(int id);
 
-	public Funcionario pesquisar(Integer id);
+	public Funcionario pesquisar(int id);
 
 	public List<Funcionario> listarTodos();
 

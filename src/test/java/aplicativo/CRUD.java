@@ -16,15 +16,15 @@ public class CRUD {
 
 	public static void main(String[] args) {
 
-		salvar();
-		//listarContato();
+		//salvar();
+		listarContato();
 		//remover();
 
 	}
 
 	public static void salvar() {
 		// Relação: OnetoOne
-		Funcionario fun1 = new Funcionario(null, "Flavio", "Gomes", "analista de sistemas");
+		Funcionario fun1 = new Funcionario();
 		Endereco end1 = new Endereco(null, "Rua B", "Bairro B", "cidade B", "estado B", "1111-11");
 		fun1.setEndereco(end1);
 		// =========================================================================================

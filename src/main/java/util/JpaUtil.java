@@ -10,7 +10,7 @@ public class JpaUtil {
 
     static {
     		
-    	 factory = Persistence.createEntityManagerFactory("CadastroFuncinario");
+    	 factory = Persistence.createEntityManagerFactory("CadastroFuncionario");
     }
 
     public static EntityManager getEntityManager() {
