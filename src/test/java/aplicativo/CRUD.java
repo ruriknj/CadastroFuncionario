@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import entidade.Endereco;
 import entidade.Funcionario;
 import entidade.Telefone;
+import entidade.Usuario;
 import util.JpaUtil;
 
 
@@ -17,8 +18,9 @@ public class CRUD {
 	public static void main(String[] args) {
 
 		//salvar();
-		listarContato();
+		//listarContato();
 		//remover();
+		listarTodos();
 
 	}
 
@@ -67,6 +69,20 @@ public class CRUD {
 		tm.begin();
 		ent.remove(funcionario);
 		tm.commit();
+
+	}
+	
+	public static List<Usuario> listarTodos() {
+
+		EntityManager ent = JpaUtil.getEntityManager();
+
+		Query query = ent.createQuery("from Usuario u");
+
+		List<Usuario> usuarios = query.getResultList();
+		
+		System.out.println("Lista todos usuarios: " + usuarios);
+
+		return usuarios;
 
 	}
 }

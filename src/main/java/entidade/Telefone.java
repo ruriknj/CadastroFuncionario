@@ -14,7 +14,7 @@ public class Telefone {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "telefone_id")
-	private Integer id;
+	private int id;
 	private String codigoArea;
 	private String numero;
 	private String tipo;
@@ -26,7 +26,7 @@ public class Telefone {
 	public Telefone() {
 	}
 
-	public Telefone(Integer id, String codigoArea, String numero, String tipo) {
+	public Telefone(int id, String codigoArea, String numero, String tipo) {
 		super();
 		this.id = id;
 		this.codigoArea = codigoArea;
@@ -35,11 +35,11 @@ public class Telefone {
 
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

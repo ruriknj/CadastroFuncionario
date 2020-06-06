@@ -7,7 +7,7 @@
 
 <h:head>
 	<f:metadata charset="utf-8" />
-	<title>Funcionario</title>
+	<title>Funcionário</title>
 </h:head>
 
 <link rel="stylesheet" type="text/css"
@@ -17,10 +17,22 @@
 <h:body>
 <h:form >
 	<div
-		style="width: 592px; font-size: 36px; line-height: 48px; 
+		style="width: 991px; font-size: 36px; line-height: 48px; 
 			background-color: navy; color: white">Projeto Cadastro de Funcionario</div>
-
-	<h2></h2>
+			
+	
+		<p:menubar label="Ajax" style="width:980px;" >
+			<p:menuitem value="Voltar" url="Home.xhtml"></p:menuitem>
+			<p:menuitem value="Login" url="login.xhtml"></p:menuitem>
+			<p:menuitem value="Cadastrar Funcionario" url="manterFuncionario.xhtml"></p:menuitem>
+			<p:menuitem value="Listar Funcionários" url="listaFuncionario.xhtml"></p:menuitem>
+			<p:menuitem value="Fechar" onclick="closeDialog();" 
+					immediate="true" icon="ui-icon-close" >
+			</p:menuitem>
+		</p:menubar>
+		<SCRIPT type="text/javascript">
+   					 function closeDialog(){window.close();}
+    				</SCRIPT>
 	
 
 

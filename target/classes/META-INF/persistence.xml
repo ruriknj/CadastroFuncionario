@@ -10,6 +10,7 @@
  		<class>entidade.Funcionario</class>
 		<class>entidade.Endereco</class>
 		<class>entidade.Telefone</class>
+		<class>entidade.Usuario</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url"

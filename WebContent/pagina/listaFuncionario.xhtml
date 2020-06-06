@@ -28,26 +28,26 @@
 		</p:panelGrid>
 		<p:panel header="Lista de Funcionários"
 			style="margin-bottom:5px; width: 100%"/>
-				
-				
- 
-   <p:panel id = "resultados" style="margin-bottom:10px">
-			<p:dataTable var="user" value="#{FuncionarioBean.funcionarios}" >
+			<p:messages id="message" showDetail="true" closable="true">
+					<p:autoUpdate />
+				</p:messages>
+   <p:panel id = "resultados" style="margin-bottom:10px" >
+			<p:dataTable var="funcionario" value="#{FuncionarioBean.funcionarios}" >
 				<p:column headerText="ID">
-					<h:outputText value="#{user.id}" />
+					<h:outputText value="#{funcionario.id}" />
 				</p:column>
 
 				<p:column headerText="Nome">
-					<h:outputText value="#{user.nome}" >
+					<h:outputText value="#{funcionario.nome}" >
 					</h:outputText>
 				</p:column>
 
 				<p:column headerText="Sobrenome">
-					<h:outputText value="#{user.sobrenome}" />
+					<h:outputText value="#{funcionario.sobrenome}" />
 		
 				</p:column>
 				<p:column headerText="Cargo/Experiência">
-					<h:outputText value="#{user.cargo}" >
+					<h:outputText value="#{funcionario.cargo}" >
 					</h:outputText>
 				</p:column>
 				
@@ -55,12 +55,14 @@
 				<h:commandLink value="Editar" 
 				actionListener="#{FuncionarioBean.editarFuncionario}" rendered="true" >
 						<f:setPropertyActionListener
-						target="#{FuncionarioBean.idFuncionarioSelecionado}" value="#{user.id}" />
+						target="#{FuncionarioBean.idFuncionarioSelecionado}" value="#{funcionario.id}" />
                 </h:commandLink>
-				<h:commandLink value="Remover" update=":formCliente" immediate="true" 
+                </p:column>
+                <p:column headerText="Ação">
+				<h:commandLink value="Remover" update="@form" immediate="true" 
 				actionListener="#{FuncionarioBean.removerFuncinario}" rendered="true" >
 						<f:setPropertyActionListener
-						target="#{FuncionarioBean.idFuncionarioSelecionado}" value="#{user.id}" />
+						target="#{FuncionarioBean.idFuncionarioSelecionado}" value="#{funcionario.id}" />
                 </h:commandLink>
                 </p:column>
 			</p:dataTable>

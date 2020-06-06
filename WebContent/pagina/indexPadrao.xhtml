@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets" >
+    
+   <ui:composition template="templatePrincipal.xhtml">
+
+   	<ui:define name="menu">
+   		<p:panelMenu>
+   			<p:submenu label="Javai">
+	   		<p:menuitem value="Calculadora" action="calculadora.xhtml" icon="pi pi-save" />
+	   		<p:menuitem value="Login" action="login.xhtml" icon="pi pi-save" />
+	   		</p:submenu>
+   		</p:panelMenu>
+   	</ui:define>
+
+   	<ui:define name="conteudo">
+   		Porjeto Java 3, tela principal
+        
+   	</ui:define>
+   </ui:composition>
+
+
+<!-- Atividade da Semana
+
+Padronizar o projeto utilizando template dado em aula, onde,
+a primeira tela deve ser o login, assim, o usuario sendo 
+valido, deve seve ser redirecionado para a tela de home/index (tela com templete),
+nessa tela, deve ter no menu os links para as telas criadas anteriormente,
+onde as mesmas já devem está com a configuração e utilização do templete
+principal. 
+	
+ -->
+
+
+
+
+</html>

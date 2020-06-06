@@ -1,13 +1,10 @@
 package controle;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -30,7 +27,7 @@ public class FuncionarioBean {
 	private List<Telefone> telefones;
 	private List<Funcionario> funcionarios;
 	private int idFuncionarioSelecionado;
-	private String nomeFeiraSelecionado;
+	private int idTelefoneSelecionado;
 
 	public FuncionarioBean() {
 
@@ -39,9 +36,8 @@ public class FuncionarioBean {
 		this.funcionarioDAO = new FuncionarioDAOImp();
 		this.telefoneNovo = new Telefone();
 		this.funcionario.setTelefones(new ArrayList<Telefone>());
-		// this.telefoneNovo.setFuncionario(this.funcionario);
 		this.funcionarios = new ArrayList<Funcionario>();
-		// this.funcionarios = this.funcionarioDAO.listarTodos();
+
 	}
 
 	public void listarTodos() {
@@ -55,30 +51,11 @@ public class FuncionarioBean {
 		// EntityTransaction tm = ent.getTransaction();
 
 		Query query = ent.createQuery("from Funcionario f");
+		@SuppressWarnings("unchecked")
 		List<Funcionario> funcionarios = query.getResultList();
 
 		System.out.println("===== Entrou Consulta: ====");
 		System.out.println(funcionarios);
-	}
-
-	public Funcionario listaFeira() throws IOException {
-
-		this.funcionario = this.funcionarioDAO.ListaFeira(nomeFeiraSelecionado);
-		funcionario.setNome(nomeFeiraSelecionado);
-		System.out.println("Feira Selecionada: " + nomeFeiraSelecionado + this.funcionario);
-		abrirManterUsuario();
-
-		if (funcionario.getId() != 0) {
-
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Sucesso", "Feira existe!!!"));
-		}
-		return null;
-
-	}
-
-	public void abrirManterUsuario() throws IOException {
-		FacesContext.getCurrentInstance().getExternalContext().redirect("manterFuncionario.xhtml");
 	}
 
 	public void salvar() {
@@ -104,19 +81,16 @@ public class FuncionarioBean {
 					&& (fone.getNumero().equalsIgnoreCase(this.telefoneNovo.getNumero()))) {
 				achou = true;
 				System.out.println("Item novo 2: " + novo);
-
 			}
 		}
 
 		if (achou) {
-			// mensagem item já existe na lista
+			new FacesMessage(FacesMessage.SEVERITY_ERROR, "Informação", "Telefone já existe!!!");
 		} else {
 
 			this.funcionario.getTelefones().add(novo);
-
 		}
-
-		// adicionar mensagem de sucesso.
+		new FacesMessage(FacesMessage.SEVERITY_ERROR, "Sucesso", "Telefone cadastrado!!!");
 		this.funcionario.setEndereco(this.endereco);
 	}
 
@@ -130,32 +104,46 @@ public class FuncionarioBean {
 	}
 
 	public String editarFuncionario() {
-		
+
 		System.out.println("Funcionario selecionado: " + idFuncionarioSelecionado);
-			this.funcionario.setId(idFuncionarioSelecionado);
-			this.funcionario.getId();
+		this.funcionario.setId(idFuncionarioSelecionado);
+		this.funcionario.getId();
 		Funcionario funcionarioRecuperado = this.funcionarioDAO.pesquisar(this.idFuncionarioSelecionado);
 		System.out.println("Funcionario achado " + funcionarioRecuperado);
 		if (funcionarioRecuperado != null) {
 			this.funcionario = funcionarioRecuperado;
+
 			return "manterFuncionario.xhtml";
 
 		} else {
-			// Manda erro,não achou
+			new FacesMessage(FacesMessage.SEVERITY_ERROR, "Atenção", "Não foi achado!!!");
 			return "";
 		}
 	}
 
 	public void removerFuncinario() {
-		
+
 		System.out.println("Funcionario selecionado: " + idFuncionarioSelecionado);
 
-		if (this.funcionario.getId() != 0) {
+		if (idFuncionarioSelecionado != 0) {
 
-		this.funcionarioDAO.removerFuncionario(idFuncionarioSelecionado);
+			this.funcionarioDAO.removerFuncionario(idFuncionarioSelecionado);
+		} else {
+			new FacesMessage(FacesMessage.SEVERITY_ERROR, "Informação", "Funcionario não cadastrado");
+			System.out.println("Funcionario novo: " + this.funcionario.getId());
 		}
-		else {
-		System.out.println("Funcionario novo: " + this.funcionario.getId());
+	}
+
+	public void removerTelefone() {
+
+		System.out.println("Funcionario selecionado: " + idTelefoneSelecionado);
+
+		if (idTelefoneSelecionado != 0) {
+
+			this.funcionarioDAO.removerTelefone(idTelefoneSelecionado);
+		} else {
+			new FacesMessage(FacesMessage.SEVERITY_ERROR, "Informação", "Telefone não cadastrado");
+			System.out.println("Funcionario novo: " + this.funcionario.getId());
 		}
 	}
 
@@ -207,12 +195,12 @@ public class FuncionarioBean {
 		this.idFuncionarioSelecionado = idFuncionarioSelecionado;
 	}
 
-	public String getNomeFeiraSelecionado() {
-		return nomeFeiraSelecionado;
+	public int getIdTelefoneSelecionado() {
+		return idTelefoneSelecionado;
 	}
 
-	public void setNomeFeiraSelecionado(String nomeFeiraSelecionado) {
-		this.nomeFeiraSelecionado = nomeFeiraSelecionado;
+	public void setIdTelefoneSelecionado(int idTelefoneSelecionado) {
+		this.idTelefoneSelecionado = idTelefoneSelecionado;
 	}
 
 }
