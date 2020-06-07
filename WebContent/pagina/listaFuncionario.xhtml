@@ -7,7 +7,7 @@
 
 <h:body>
 	<p:fieldset>
-		<h:form  >
+		<h:form  id= "form">
  <ui:composition template="templateFuncionario.xhtml">
 
 			
@@ -53,14 +53,14 @@
 				
 				<p:column headerText="Ação">
 				<h:commandLink value="Editar" 
-				actionListener="#{FuncionarioBean.editarFuncionario}" rendered="true" >
+				action="#{FuncionarioBean.editarFuncionario}" >
 						<f:setPropertyActionListener
 						target="#{FuncionarioBean.idFuncionarioSelecionado}" value="#{funcionario.id}" />
                 </h:commandLink>
                 </p:column>
                 <p:column headerText="Ação">
-				<h:commandLink value="Remover" update="@form" immediate="true" 
-				actionListener="#{FuncionarioBean.removerFuncinario}" rendered="true" >
+				<h:commandLink value="Remover" update="@form" 
+				action="#{FuncionarioBean.removerFuncinario}"  >
 						<f:setPropertyActionListener
 						target="#{FuncionarioBean.idFuncionarioSelecionado}" value="#{funcionario.id}" />
                 </h:commandLink>

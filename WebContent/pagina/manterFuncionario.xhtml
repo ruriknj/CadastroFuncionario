@@ -94,7 +94,7 @@
 					style="width:605px;" var="item">
 					<p:column headerText="Ação">
 						<h:commandLink value="Remover" update="@form" immediate="true" 
-						actionListener="#{FuncionarioBean.removerTelefone}" rendered="true" >
+						action="#{FuncionarioBean.removerTelefone}" rendered="true" >
 						<f:setPropertyActionListener
 						target="#{FuncionarioBean.idTelefoneSelecionado}" value="#{item.id}" />
                 		</h:commandLink>

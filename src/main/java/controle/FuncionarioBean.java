@@ -53,7 +53,7 @@ public class FuncionarioBean {
 		Query query = ent.createQuery("from Funcionario f");
 		@SuppressWarnings("unchecked")
 		List<Funcionario> funcionarios = query.getResultList();
-
+		
 		System.out.println("===== Entrou Consulta: ====");
 		System.out.println(funcionarios);
 	}
@@ -111,8 +111,10 @@ public class FuncionarioBean {
 		Funcionario funcionarioRecuperado = this.funcionarioDAO.pesquisar(this.idFuncionarioSelecionado);
 		System.out.println("Funcionario achado " + funcionarioRecuperado);
 		if (funcionarioRecuperado != null) {
+			
 			this.funcionario = funcionarioRecuperado;
-
+			this.funcionario.setEndereco(this.endereco);
+		
 			return "manterFuncionario.xhtml";
 
 		} else {
@@ -128,6 +130,7 @@ public class FuncionarioBean {
 		if (idFuncionarioSelecionado != 0) {
 
 			this.funcionarioDAO.removerFuncionario(idFuncionarioSelecionado);
+			listarTodos();
 		} else {
 			new FacesMessage(FacesMessage.SEVERITY_ERROR, "Informação", "Funcionario não cadastrado");
 			System.out.println("Funcionario novo: " + this.funcionario.getId());
